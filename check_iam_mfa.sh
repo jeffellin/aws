@@ -3,7 +3,7 @@ all_mfa=true
 output=`aws iam list-users | jq -r '.Users[] | .UserName'`
 
 while read -r line ; do
-    echo "Processing $line"
+    echo "$line"
 
     
     mfa=`aws iam list-mfa-devices --user-name "$line" | jq '.MFADevices | length'`
