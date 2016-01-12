@@ -11,9 +11,9 @@ while read -r line ; do
     	
     	if aws iam get-login-profile --user-name "$line" > /dev/null 2>&1 ; then
     		 echo  -e '\tNo MFA Device Found'
+    	         aws iam  delete-login-profile --user-name "$line"
     		 all_mfa=false
     	fi 
-    	#aws iam  delete-login-profile --user-name "$line"
     fi
 done <<< "$output"
 
